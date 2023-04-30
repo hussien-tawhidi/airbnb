@@ -30,21 +30,36 @@ export default function LoginModal() {
     },
   });
 
+  // const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  //   setIsLoading(true);
+  //   signIn("credentials", { ...data, redirect: false }).then((callback) => {
+  //     setIsLoading(false);
+
+  //     if (callback?.ok) {
+  //       toast.success("Login Successfully");
+  //       router.refresh();
+  //       loginModal.onClose();
+  //     }
+
+  //     if (callback?.error) {
+  //       toast.error(callback?.error);
+
+  //     }
+  //   });
+  // };
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-    signIn("credentials", { ...data, redirect: false }).then((callback) => {
-      setIsLoading(false);
-
-      if (callback?.ok) {
+    signIn("credentials", { ...data, redirect: false })
+      .then(() => {
         toast.success("Login Successfully");
         router.refresh();
         loginModal.onClose();
-      }
-
-      if (callback?.error) {
-        toast.error(callback?.error);
-      }
-    });
+      })
+      .catch((error) => {
+        toast.success(error);
+      });
+    setIsLoading(false);
   };
 
   const bodyContent = (

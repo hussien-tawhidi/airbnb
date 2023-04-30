@@ -5,6 +5,7 @@ import Search from "./Search";
 import UserMenu from "./UserMenu";
 
 export default function Navbar() {
+  
   // console.log(currentUser);
   return (
     <div className='fixed w-full py-4 border-b-[1px] bg-white px-10 z-10 shadow-sm'>
